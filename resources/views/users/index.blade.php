@@ -22,8 +22,8 @@
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>
-                @foreach($user->roles as $role)
-                    {{$role->display_name}}
+                @foreach($user->roles as $index=>$role)
+                    {{$role->display_name}} {{ $index+1 < $user->roles->count() ? ' , ':''}}
 
                     @endforeach
             </td>

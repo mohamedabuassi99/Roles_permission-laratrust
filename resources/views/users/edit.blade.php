@@ -6,6 +6,8 @@
             <div class="col-md-12">
                 <h1>edit user > {{$user->name}} </h1>
                 <form action="{{route('users.update',$user->id)}}" method="post">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" name="name" class="form-control" value="{{$user->name}}">
@@ -19,12 +21,12 @@
                         <label>Roles</label>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" >super admin
+                                <input type="checkbox" name="roles[]" value="super_admin" {{$user->hasRole('super_admin')?'checked':''}}>super admin
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" >
+                                <input type="checkbox" name="roles[]" value="user" {{$user->hasRole('user')?'checked':''}}>
                                 User
                             </label>
                         </div>
